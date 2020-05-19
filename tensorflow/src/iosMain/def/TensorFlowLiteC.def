@@ -1,0 +1,4 @@
+language = Objective-C
+package = cocoapods.TensorFlowLiteC
+modules = TensorFlowLiteC
+linkerOpts = -framework TensorFlowLiteC 

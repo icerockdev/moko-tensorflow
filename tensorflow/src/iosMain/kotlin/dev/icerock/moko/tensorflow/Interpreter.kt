@@ -1,12 +1,18 @@
 package dev.icerock.moko.tensorflow
 
+import cocoapods.TensorFlowLiteC.TFL_Tensor
 import dev.icerock.moko.resources.FileResource
+import kotlinx.cinterop.cValue
 
 actual class Interpreter {
     actual val fileResource: FileResource
         get() = TODO("Not yet implemented")
     actual val options: InterpreterOptions
         get() = TODO("Not yet implemented")
+
+    private val tensor = cValue<TFL_Tensor> {
+
+    }
 
     /**
      * Gets the number of input tensors.
