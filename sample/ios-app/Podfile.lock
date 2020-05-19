@@ -1,0 +1,29 @@
+PODS:
+  - mokoTensorflow (0.1.0):
+    - TensorFlowLiteC (~> 2.0.0)
+  - MultiPlatformLibrary (0.1.0)
+  - TensorFlowLiteC (2.0.0)
+
+DEPENDENCIES:
+  - mokoTensorflow (from `../../`)
+  - MultiPlatformLibrary (from `../mpp-library`)
+  - TensorFlowLiteC (~> 2.0.0)
+
+SPEC REPOS:
+  trunk:
+    - TensorFlowLiteC
+
+EXTERNAL SOURCES:
+  mokoTensorflow:
+    :path: "../../"
+  MultiPlatformLibrary:
+    :path: "../mpp-library"
+
+SPEC CHECKSUMS:
+  mokoTensorflow: fe6b1ea52888cbd28ebe682bc8f3ca08f11d6150
+  MultiPlatformLibrary: 176fb8ade516666cd47e93de1b71ba0441a541bb
+  TensorFlowLiteC: d22a94f77938edb2dfcb9674937f9548a3fcdb23
+
+PODFILE CHECKSUM: ac6c861c197ab7cdb1f5d91a049b579eaec6769a
+
+COCOAPODS: 1.8.4
