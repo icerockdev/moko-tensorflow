@@ -14,7 +14,7 @@ object Deps {
 
         val mobileMultiplatform = PluginDesc(id = "dev.icerock.mobile.multiplatform")
         val mokoResources = PluginDesc(
-            id = "dev.icerock.mobile.multiplatform-resources",
+            id = "dev.icerock.moko:resources-generator",
             version = Versions.Plugins.mokoResources
         )
 
@@ -29,6 +29,19 @@ object Deps {
             val appCompat = AndroidLibrary(
                 name = "androidx.appcompat:appcompat:${Versions.Libs.Android.appCompat}"
             )
+            val constraintLayout = AndroidLibrary(
+                name = "androidx.constraintlayout:constraintlayout:1.1.3"
+            )
+            val coreKtx = AndroidLibrary(
+                name = "androidx.core:core-ktx:1.1.0"
+            )
+            val playServices = AndroidLibrary(
+                name = "com.google.android.gms:play-services-tasks:17.0.0"
+            )
+            val androidDraw = AndroidLibrary(
+                name = "com.github.divyanshub024:AndroidDraw:v0.1"
+            )
+
             val tensorflowLite = AndroidLibrary(
                 name = "org.tensorflow:tensorflow-lite:${Versions.Libs.Android.tensorflowLite}"
             )
@@ -44,10 +57,24 @@ object Deps {
                 common = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.Libs.MultiPlatform.serialization}",
                 ios = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.Libs.MultiPlatform.serialization}"
             )
+            val mokoTensorflow = MultiPlatformLibrary(
+                common = "dev.icerock.moko:tensorflow:${Versions.Libs.MultiPlatform.mokoTensorflow}",
+                iosX64 = "dev.icerock.moko:tensorflow-iosx64:${Versions.Libs.MultiPlatform.mokoTensorflow}",
+                iosArm64 = "dev.icerock.moko:tensorflow-iosarm64:${Versions.Libs.MultiPlatform.mokoTensorflow}"
+            )
             val mokoResources = MultiPlatformLibrary(
                 common = "dev.icerock.moko:resources:${Versions.Libs.MultiPlatform.mokoResources}",
                 iosX64 = "dev.icerock.moko:resources-iosx64:${Versions.Libs.MultiPlatform.mokoResources}",
                 iosArm64 = "dev.icerock.moko:resources-iosarm64:${Versions.Libs.MultiPlatform.mokoResources}"
+            )
+            val mokoMedia = MultiPlatformLibrary(
+                common = "dev.icerock.moko:media:${Versions.Libs.MultiPlatform.mokoMedia}",
+                iosX64 = "dev.icerock.moko:media-iosx64:${Versions.Libs.MultiPlatform.mokoMedia}",
+                iosArm64 = "dev.icerock.moko:media-iosarm64:${Versions.Libs.MultiPlatform.mokoMedia}"
+            )
+
+            val coroutineWorker = MultiPlatformLibrary(
+                common = "com.autodesk:coroutineworker:${Versions.Libs.MultiPlatform.coroutineWorker}"
             )
         }
 

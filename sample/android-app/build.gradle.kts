@@ -46,7 +46,11 @@ android {
 dependencies {
     implementation(Deps.Libs.Android.kotlinStdLib.name)
 
+    implementation(Deps.Libs.Android.coreKtx.name)
     implementation(Deps.Libs.Android.appCompat.name)
+    implementation(Deps.Libs.Android.constraintLayout.name)
+    implementation(Deps.Libs.Android.androidDraw.name)
+    implementation(Deps.Libs.Android.playServices.name)
 
     implementation(project("${parent!!.path}:mpp-library"))
 }

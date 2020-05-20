@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.multiplatform")
     id("dev.icerock.mobile.multiplatform")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 android {
@@ -22,24 +23,14 @@ setupFramework(exports = emptyList())
 dependencies {
     mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
     mppLibrary(Deps.Libs.MultiPlatform.serialization)
+
+    mppLibrary(Deps.Libs.MultiPlatform.mokoResources)
+    mppLibrary(Deps.Libs.MultiPlatform.mokoTensorflow)
+    mppLibrary(Deps.Libs.MultiPlatform.mokoMedia)
+
+    mppLibrary(Deps.Libs.MultiPlatform.coroutineWorker)
 }
 
-cocoaPods {
-    podsProject = file("../ios-app/Pods/Pods.xcodeproj")
-
-    pod("mokoTensorflow", onlyLink = true)
-}
-
-kotlin {
-    targets
-        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
-        .flatMap { it.binaries }
-        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
-        .forEach { framework ->
-            framework.isStatic = true
-
-            framework.linkerOpts(
-                project.file("../sample/ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" }
-            )
-        }
+multiplatformResources {
+    multiplatformResourcesPackage = "com.icerockdev.library"
 }

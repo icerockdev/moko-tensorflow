@@ -19,14 +19,14 @@ buildscript {
         maven { url = uri("https://dl.bintray.com/icerockdev/plugins") }
     }
     dependencies {
+        classpath("dev.icerock.moko:resources-generator:0.10.0")
         with(Deps.Plugins) {
             listOf(
                 androidApplication,
                 androidLibrary,
                 kotlinMultiplatform,
                 kotlinKapt,
-                kotlinAndroid,
-                mokoResources
+                kotlinAndroid
             )
         }.let { plugins(it) }
     }
@@ -42,6 +42,8 @@ allprojects {
         maven { url = uri("https://kotlin.bintray.com/kotlin") }
         maven { url = uri("https://kotlin.bintray.com/kotlinx") }
         maven { url = uri("https://dl.bintray.com/icerockdev/moko") }
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("http://dl.bintray.com/lukaville/maven") }
     }
 
     apply(plugin = Deps.Plugins.detekt.id)

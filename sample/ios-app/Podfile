@@ -14,5 +14,4 @@ target 'tensorflow-test' do
   pod 'MultiPlatformLibrary', :path => '../mpp-library'
 
   pod 'TensorFlowLiteObjC', '~> 2.0.0'
-  pod 'mokoTensorflow', :path => '../../'
 end

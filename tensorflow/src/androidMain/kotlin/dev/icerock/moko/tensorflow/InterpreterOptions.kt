@@ -19,10 +19,8 @@ actual class InterpreterOptions(
         .setAllowFp16PrecisionForFp32(allowFp16PrecisionForFp32)
         .setUseNNAPI(useNNAPI)
         .apply {
-            delegates.asSequence()
-                .map {
-                    PlatformTensorFlowDelegate { it.getNativeHandle() }
-                }
-                .forEach(this::addDelegate)
+            delegates.forEach {
+                addDelegate(PlatformTensorFlowDelegate { it.getNativeHandle() })
+            }
         }
 }

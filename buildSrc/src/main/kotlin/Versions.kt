@@ -6,7 +6,7 @@ object Versions {
     object Android {
         const val compileSdk = 28
         const val targetSdk = 28
-        const val minSdk = 16
+        const val minSdk = 19
     }
 
     const val kotlin = "1.3.72"
@@ -30,7 +30,10 @@ object Versions {
         object MultiPlatform {
             const val mokoTensorflow = "0.1.0"
             const val mokoResources = Versions.mokoResources
+            const val mokoMedia = "0.4.3"
+
             const val serialization = "0.20.0"
+            const val coroutineWorker = "0.5.0"
         }
     }
 }
