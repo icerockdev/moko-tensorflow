@@ -99,6 +99,7 @@
 				2270ACCE246D3E84003CC9B9 /* Sources */,
 				2270ACCF246D3E84003CC9B9 /* Frameworks */,
 				2270ACD0246D3E84003CC9B9 /* Resources */,
+				D11A7F0BCED6A357798352AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -156,6 +157,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		D11A7F0BCED6A357798352AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tensorflow-test/Pods-tensorflow-test-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DF89BF375881D5E0A2EF1882 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

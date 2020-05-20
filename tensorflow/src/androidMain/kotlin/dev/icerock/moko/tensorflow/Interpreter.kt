@@ -64,5 +64,4 @@ actual class Interpreter(
     actual fun close() {
         tensorFlowInterpreter.close()
     }
-
 }

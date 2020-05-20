@@ -43,19 +43,9 @@ publishing {
     }
 }
 
-kotlin {
-    targets.filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>().forEach { target ->
-        target.compilations.getByName("main") {
-            val tensorFlowLiteC by cinterops.creating {
-                defFile(project.file("src/iosMain/def/TensorFlowLiteC.def"))
+cocoaPods {
+    podsProject = file("../sample/ios-app/Pods/Pods.xcodeproj")
 
-                val frameworks = listOf(
-                    project.file("../sample/ios-app/Pods/TensorFlowLiteC/Frameworks")
-                )
-
-                val frameworksOpts = frameworks.map { "-F${it.path}" }
-                compilerOpts(*frameworksOpts.toTypedArray())
-            }
-        }
-    }
+    pod("mokoTensorflow")
+    pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite")
 }

@@ -4,12 +4,13 @@
 
 import UIKit
 import MultiPlatformLibrary
-import TensorFlowLiteC
+import TFLTensorFlowLite
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
     }
 
 }

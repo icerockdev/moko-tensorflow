@@ -13,7 +13,7 @@ actual class InterpreterOptions(
 ) {
     actual constructor(numThreads: Int) : this(numThreads, false)
 
-    val tensorFlowInterpreterOptions = PlatformInterpreterOptions()
+    internal val tensorFlowInterpreterOptions = PlatformInterpreterOptions()
         .setNumThreads(numThreads)
         .setAllowBufferHandleOutput(allowBufferHandleOutput)
         .setAllowFp16PrecisionForFp32(allowFp16PrecisionForFp32)

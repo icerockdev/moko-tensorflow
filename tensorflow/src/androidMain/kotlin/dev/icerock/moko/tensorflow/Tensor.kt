@@ -7,7 +7,7 @@ package dev.icerock.moko.tensorflow
 import org.tensorflow.lite.DataType
 
 actual class Tensor(
-    private val platformTensor: PlatformTensor
+    internal val platformTensor: PlatformTensor
 ) {
     actual val dataType: TensorDataType
         get() = platformTensor.dataType().toTensorDataType()
@@ -17,7 +17,7 @@ actual class Tensor(
         get() = platformTensor.shape()
 }
 
-private fun DataType.toTensorDataType() = when(this) {
+private fun DataType.toTensorDataType() = when (this) {
     DataType.FLOAT32 -> TensorDataType.FLOAT32
     DataType.INT32 -> TensorDataType.INT32
     DataType.UINT8 -> TensorDataType.UINT8
