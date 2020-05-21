@@ -22,13 +22,18 @@ setupFramework(exports = emptyList())
 
 dependencies {
     mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
-    mppLibrary(Deps.Libs.MultiPlatform.serialization)
 
     mppLibrary(Deps.Libs.MultiPlatform.mokoResources)
     mppLibrary(Deps.Libs.MultiPlatform.mokoTensorflow)
     mppLibrary(Deps.Libs.MultiPlatform.mokoMedia)
 
     mppLibrary(Deps.Libs.MultiPlatform.coroutineWorker)
+}
+
+cocoaPods {
+    podsProject = file("../ios-app/Pods/Pods.xcodeproj")
+
+    pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite", onlyLink = true)
 }
 
 multiplatformResources {

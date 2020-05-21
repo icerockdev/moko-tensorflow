@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        interpreter = Interpreter(MR.files.mnist, InterpreterOptions(1, useNNAPI = true), this)
+        interpreter = Interpreter(MR.files.mnist, InterpreterOptions(2, useNNAPI = true), this)
         digitClassifier = TFDigitClassifier(interpreter)
 
         digitClassifier.initialize {

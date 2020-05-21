@@ -13,5 +13,6 @@ install! 'cocoapods', :disable_input_output_paths => true
 target 'tensorflow-test' do
   pod 'MultiPlatformLibrary', :path => '../mpp-library'
 
+  pod 'Sketch'
   pod 'TensorFlowLiteObjC', '~> 2.0.0'
 end

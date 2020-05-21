@@ -1,33 +1,31 @@
 PODS:
-  - mokoTensorflow (0.1.0):
-    - TensorFlowLiteObjC (~> 2.0.0)
   - MultiPlatformLibrary (0.1.0)
+  - Sketch (3.0)
   - TensorFlowLiteC (2.0.0)
   - TensorFlowLiteObjC (2.0.0):
     - TensorFlowLiteC (= 2.0.0)
 
 DEPENDENCIES:
-  - mokoTensorflow (from `../../`)
   - MultiPlatformLibrary (from `../mpp-library`)
+  - Sketch
   - TensorFlowLiteObjC (~> 2.0.0)
 
 SPEC REPOS:
   trunk:
+    - Sketch
     - TensorFlowLiteC
     - TensorFlowLiteObjC
 
 EXTERNAL SOURCES:
-  mokoTensorflow:
-    :path: "../../"
   MultiPlatformLibrary:
     :path: "../mpp-library"
 
 SPEC CHECKSUMS:
-  mokoTensorflow: de33899858dfd13771d5ca5e488943f74136b9ad
   MultiPlatformLibrary: 176fb8ade516666cd47e93de1b71ba0441a541bb
+  Sketch: 49a4b71f7bc77316ed5f75ee79dedaa2b844d5e7
   TensorFlowLiteC: d22a94f77938edb2dfcb9674937f9548a3fcdb23
   TensorFlowLiteObjC: c33d5e1994bc3784ce5724c84b7261e2cecb9e30
 
-PODFILE CHECKSUM: d0272f48009c9bb791535918807970c7d977d56d
+PODFILE CHECKSUM: 3c7ce574d53fb8e9ff68260e7c5552be53476662
 
 COCOAPODS: 1.9.1

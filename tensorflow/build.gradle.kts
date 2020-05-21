@@ -46,6 +46,5 @@ publishing {
 cocoaPods {
     podsProject = file("../sample/ios-app/Pods/Pods.xcodeproj")
 
-    //pod("mokoTensorflow")
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite")
 }
