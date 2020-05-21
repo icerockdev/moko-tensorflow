@@ -30,12 +30,27 @@ dependencies {
     mppLibrary(Deps.Libs.MultiPlatform.coroutineWorker)
 }
 
+multiplatformResources {
+    multiplatformResourcesPackage = "dev.icerock.moko.sample.tensorflowtest" //"com.icerockdev.library"
+}
+
 cocoaPods {
     podsProject = file("../ios-app/Pods/Pods.xcodeproj")
 
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite", onlyLink = true)
 }
 
-multiplatformResources {
-    multiplatformResourcesPackage = "com.icerockdev.library"
+kotlin {
+    targets
+        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
+        .flatMap { it.binaries }
+        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
+        .forEach { framework ->
+            framework.isStatic = true
+
+            framework.linkerOpts(
+                project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" },
+                "-framework TensorFlowLiteC"
+            )
+        }
 }

@@ -12,6 +12,7 @@
 		2270ACDD246D3E84003CC9B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2270ACDB246D3E84003CC9B9 /* Main.storyboard */; };
 		2270ACDF246D3E86003CC9B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2270ACDE246D3E86003CC9B9 /* Assets.xcassets */; };
 		2270ACE2246D3E86003CC9B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2270ACE0246D3E86003CC9B9 /* LaunchScreen.storyboard */; };
+		2298A66624767A04005260ED /* TFLiteExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2298A66524767A04005260ED /* TFLiteExtensions.swift */; };
 		742852F012B7E8A75B024E19 /* Pods_tensorflow_test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D174D9FCECAB6FABB7844EE /* Pods_tensorflow_test.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,7 @@
 		2270ACDE246D3E86003CC9B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2270ACE1246D3E86003CC9B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2270ACE3246D3E86003CC9B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2298A66524767A04005260ED /* TFLiteExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFLiteExtensions.swift; sourceTree = "<group>"; };
 		E30833210FEB0C09CBBE1D1E /* Pods-tensorflow-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tensorflow-test.release.xcconfig"; path = "Target Support Files/Pods-tensorflow-test/Pods-tensorflow-test.release.xcconfig"; sourceTree = "<group>"; };
 		F28579B08DE1F37BCF72F0C5 /* Pods-tensorflow-test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tensorflow-test.debug.xcconfig"; path = "Target Support Files/Pods-tensorflow-test/Pods-tensorflow-test.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				2270ACDE246D3E86003CC9B9 /* Assets.xcassets */,
 				2270ACE0246D3E86003CC9B9 /* LaunchScreen.storyboard */,
 				2270ACE3246D3E86003CC9B9 /* Info.plist */,
+				2298A66524767A04005260ED /* TFLiteExtensions.swift */,
 			);
 			path = "tensorflow-test";
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2298A66624767A04005260ED /* TFLiteExtensions.swift in Sources */,
 				2270ACDA246D3E84003CC9B9 /* ViewController.swift in Sources */,
 				2270ACD6246D3E84003CC9B9 /* AppDelegate.swift in Sources */,
 			);
@@ -353,7 +357,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.icerock.moko.sample.tensorflow-test";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.icerock.moko.sample.tensorflowtest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -371,7 +375,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.icerock.moko.sample.tensorflow-test";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.icerock.moko.sample.tensorflowtest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

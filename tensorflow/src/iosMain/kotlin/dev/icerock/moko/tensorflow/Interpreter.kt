@@ -4,8 +4,14 @@
 
 package dev.icerock.moko.tensorflow
 
+import cocoapods.TFLTensorFlowLite.TFLTensorDataType
 import dev.icerock.moko.resources.FileResource
+import kotlinx.cinterop.addressOf
+import kotlinx.cinterop.pointed
+import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
+import platform.posix.err
+import platform.posix.memcpy
 
 actual class Interpreter(
     actual val fileResource: FileResource,
@@ -87,15 +93,39 @@ actual class Interpreter(
         if(inputs.size > getInputTensorCount()) throw IllegalArgumentException("Wrong inputs dimension.")
 
         inputs.forEachIndexed { index, any ->
-            val outputTensor = getOutputTensor(index)
+            val inputTensor = getInputTensor(index)
             errorHandled { errPtr ->
-                val data = NSData()
-                outputTensor.platformTensor.copyData(data, errPtr)
+                inputTensor.platformTensor.copyData(any as NSData, errPtr) // Fixme: hardcast Any to NSData
             }
         }
 
         errorHandled { errPtr ->
             tflInterpreter.invokeWithError(errPtr)
+        }
+
+        inputs.forEachIndexed { index, any ->
+            val outputTensor = getOutputTensor(index)
+
+            val array = when (outputTensor.dataType) {
+                TensorDataType.FLOAT32 -> {
+                    errorHandled { errPtr ->
+                        outputTensor.platformTensor.dataWithError(errPtr)
+                    }!!.toByteArray()
+                        .asList()
+                        .chunked(outputTensor.dataType.byteSize())
+                        .map {
+                            ((it[0].toInt() and (0xFF shl 24)) or
+                                    (it[1].toInt() and (0xFF shl 16)) or
+                                    (it[2].toInt() and (0xFF shl 8)) or
+                                    (it[3].toInt() and 0xFF)).toFloat()
+                        }.toFloatArray()
+                }
+                TensorDataType.INT32 -> IntArray(outputTensor.dataType.byteSize()) // Fixme:
+                TensorDataType.UINT8 -> UIntArray(outputTensor.dataType.byteSize()) // Fixme:
+                TensorDataType.INT64 -> LongArray(outputTensor.dataType.byteSize()) // Fixme:
+            }
+
+            (outputs[0] as Array<Any>)[0] = array
         }
     }
 
@@ -104,6 +134,12 @@ actual class Interpreter(
      */
     actual fun close() {
         // TODO: ???
+    }
+
+    fun NSData.toByteArray(): ByteArray = ByteArray(this@toByteArray.length.toInt()).apply {
+        usePinned {
+            memcpy(it.addressOf(0), this@toByteArray.bytes, this@toByteArray.length)
+        }
     }
 
 }
