@@ -18,17 +18,11 @@ class TFDigitClassifier(
     var modelInputSize: Int = 0 // will be inferred from TF Lite model
         private set
 
-    fun initialize(
-        onResult: () -> Unit
-    ) {
-        CoroutineWorker.execute {
-            val inputShape = interpreter.getInputTensor(0).shape
-            inputImageWidth = inputShape[1]
-            inputImageHeight = inputShape[2]
-            modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
-
-            onResult()
-        }
+    fun initialize() {
+        val inputShape = interpreter.getInputTensor(0).shape
+        inputImageWidth = inputShape[1]
+        inputImageHeight = inputShape[2]
+        modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
     }
 
     fun classifyAsync(inputData: Any, onResult: (String) -> Unit) {

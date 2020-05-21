@@ -60,9 +60,8 @@ class MainActivity : AppCompatActivity() {
         interpreter = Interpreter(MR.files.mnist, InterpreterOptions(2, useNNAPI = true), this)
         digitClassifier = TFDigitClassifier(interpreter)
 
-        digitClassifier.initialize {
-            isInterpreterInited.set(true)
-        }
+        digitClassifier.initialize()
+        isInterpreterInited.set(true)
     }
 
     override fun onDestroy() {
@@ -82,7 +81,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         digitClassifier.classifyAsync(convertBitmapToByteBuffer(bitmapToClassify)) {
-            println("Result: $it")
+            runOnUiThread {
+                predictedTextView.text = it
+            }
         }
     }
 

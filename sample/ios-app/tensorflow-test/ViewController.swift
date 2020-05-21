@@ -19,7 +19,6 @@ class ViewController: UIViewController, SketchViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        // Setup sketch view.
         sketchView.lineWidth = 30
         sketchView.backgroundColor = UIColor.black
         sketchView.lineColor = UIColor.white
@@ -31,9 +30,8 @@ class ViewController: UIViewController, SketchViewDelegate {
         interpreter = TensorflowInterpreter(fileResource: modelFileRes, options: options)
         tfDigitClassifier = TFDigitClassifier(interpreter: interpreter!)
         
-        tfDigitClassifier?.initialize {
-            self.isInterpreterInited = true
-        }
+        tfDigitClassifier?.initialize()
+        self.isInterpreterInited = true
     }
     
     deinit {
@@ -45,15 +43,15 @@ class ViewController: UIViewController, SketchViewDelegate {
         resultLabel.text = "Please draw a digit."
     }
     
-    /// Callback executed every time there is a new drawing
     func drawView(_ view: SketchView, didEndDrawUsingTool tool: AnyObject) {
-      classifyDrawing()
+        if isInterpreterInited {
+            classifyDrawing()
+        }
     }
     
     private func classifyDrawing() {
         guard let tfDigitClassifier = self.tfDigitClassifier else { return }
 
-        // Capture drawing to RGB file.
         UIGraphicsBeginImageContext(sketchView.frame.size)
         sketchView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let drawing = UIGraphicsGetImageFromCurrentImageContext()
@@ -68,7 +66,9 @@ class ViewController: UIViewController, SketchViewDelegate {
         
         
         tfDigitClassifier.classifyAsync(inputData: rgbData) { (String) in
-            print(String)
+            DispatchQueue.main.async {
+                self.resultLabel.text = String
+            }
         }
     }
     
