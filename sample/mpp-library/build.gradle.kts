@@ -46,11 +46,10 @@ kotlin {
         .flatMap { it.binaries }
         .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
         .forEach { framework ->
-            framework.isStatic = true
-
             framework.linkerOpts(
                 project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" },
-                "-framework TensorFlowLiteC"
+                "-framework",
+                "TensorFlowLiteC"
             )
         }
 }
