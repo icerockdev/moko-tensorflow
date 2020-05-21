@@ -19,14 +19,14 @@ buildscript {
         maven { url = uri("https://dl.bintray.com/icerockdev/plugins") }
     }
     dependencies {
-        classpath("dev.icerock.moko:resources-generator:0.10.0")
         with(Deps.Plugins) {
             listOf(
                 androidApplication,
                 androidLibrary,
                 kotlinMultiplatform,
                 kotlinKapt,
-                kotlinAndroid
+                kotlinAndroid,
+                mokoResources
             )
         }.let { plugins(it) }
     }

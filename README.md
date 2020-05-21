@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Download](https://api.bintray.com/packages/icerockdev/moko/moko-tensorflow/images/download.svg) ](https://bintray.com/icerockdev/moko/moko-tensorflow/_latestVersion) ![kotlin-version](https://img.shields.io/badge/kotlin-1.3.72-orange)
 
-# Mobile Kotlin resources
+# Mobile Kotlin TensorFlow
 This is a Kotlin MultiPlatform library that provides access to [TensorFlow-Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite) functionality from
 common source set.
 

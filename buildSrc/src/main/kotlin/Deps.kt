@@ -14,8 +14,8 @@ object Deps {
 
         val mobileMultiplatform = PluginDesc(id = "dev.icerock.mobile.multiplatform")
         val mokoResources = PluginDesc(
-            id = "dev.icerock.moko:resources-generator",
-            version = Versions.Plugins.mokoResources
+            id = "dev.icerock.mobile.multiplatform-resources",
+            module = "dev.icerock.moko:resources-generator:${Versions.Plugins.mokoResources}"
         )
 
         val detekt = PluginDesc(id = "io.gitlab.arturbosch.detekt", version = Versions.detekt)
