@@ -19,7 +19,7 @@ common source set.
 
 ## Requirements
 - Gradle version 5.6.4+
-- Android API 16+
+- Android API 19+
 - iOS version 9.0+
 
 ## Versions
@@ -27,8 +27,6 @@ common source set.
   - 0.1.0
 
 ## Installation
-
-TODO: update installation
 
 root build.gradle  
 ```groovy
@@ -48,19 +46,96 @@ dependencies {
 cocoaPods {
     podsProject = file("../ios-app/Pods/Pods.xcodeproj") // here should be path to Pods xcode project
 
-    pod("mokoTensorflow", onlyLink = true)
+    pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite", onlyLink = true)
+}
+
+kotlin {
+    targets
+        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
+        .flatMap { it.binaries }
+        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
+        .forEach { framework ->
+            framework.linkerOpts(
+                project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" },
+                "-framework",
+                "TensorFlowLiteC"
+            )
+        }
 }
 ```
 
 Podfile
 ```ruby
-pod 'mokoTensorflow', :git => 'https://github.com/icerockdev/moko-tensorflow.git', :tag => 'release/0.1.0'
+pod 'TensorFlowLiteObjC', '~> 2.2.0'
 ```
 
 ## Usage
+
+First place the model file in the multi-platform resource folder `commonMain/resources/MR/files`.
+
 `common`:
 ```kotlin
-TODO()
+class Classifier(private val interpreter: Interpreter) {
+
+    fun classify(inputData: Any) {
+        val inputShape = interpreter.getInputTensor(0).shape
+        val inputSize = inputShape[1]
+
+        val result = Array(1) { FloatArray(OUTPUT_CLASSES_COUNT) }
+        interpreter.run(listOf(inputData), mapOf(Pair(0, result)))
+    }
+}
+```
+
+Getting shared model file (in `common`):
+
+```kotlin
+object ResHolder {
+    fun getModelFile(): FileResource {
+        return MR.files.mymodel
+    }
+}
+```
+
+`android`:
+```kotlin
+class MainActivity : AppCompatActivity() {
+    private lateinit var interpreter: Interpreter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        interpreter = Interpreter(ResHolder.getModelFile(), InterpreterOptions(2, useNNAPI = true), this)
+        val classifier = Classifier(interpreter)
+        classifier.classify(data)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        interpreter.close()
+    }
+}
+```
+
+`iOS`:
+```swift
+class ViewController: UIViewController {
+    private var interpreter: TensorflowInterpreter?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let options: TensorflowInterpreterOptions = TensorflowInterpreterOptions(numThreads: 2)
+        let modelFileRes: ResourcesFileResource = ResHolder().getModelFile()
+        
+        interpreter = TensorflowInterpreter(fileResource: modelFileRes, options: options)
+        let classifier = Classifier(interpreter: interpreter!)
+
+        classifier.classify(data)
+    }
+
+    deinit {
+        interpreter?.close()
+    }
+}
 ```
 
 ## Samples

@@ -12,8 +12,8 @@ import android.view.MotionEvent
 import android.widget.Button
 import android.widget.TextView
 import com.divyanshu.draw.widget.DrawView
+import com.icerockdev.library.ResHolder
 import com.icerockdev.library.TFDigitClassifier
-import dev.icerock.moko.sample.tensorflowtest.MR
 import dev.icerock.moko.tensorflow.Interpreter
 import dev.icerock.moko.tensorflow.InterpreterOptions
 import java.nio.ByteBuffer
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        interpreter = Interpreter(MR.files.mnist, InterpreterOptions(2, useNNAPI = true), this)
+        interpreter = Interpreter(ResHolder.getDigitsClassifierModel(), InterpreterOptions(2, useNNAPI = true), this)
         digitClassifier = TFDigitClassifier(interpreter)
 
         digitClassifier.initialize()
