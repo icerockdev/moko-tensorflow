@@ -52,11 +52,6 @@ object Deps {
                 android = Android.kotlinStdLib.name,
                 common = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
             )
-            val serialization = MultiPlatformLibrary(
-                android = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.Libs.MultiPlatform.serialization}",
-                common = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.Libs.MultiPlatform.serialization}",
-                ios = "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.Libs.MultiPlatform.serialization}"
-            )
             val mokoTensorflow = MultiPlatformLibrary(
                 common = "dev.icerock.moko:tensorflow:${Versions.Libs.MultiPlatform.mokoTensorflow}",
                 iosX64 = "dev.icerock.moko:tensorflow-iosx64:${Versions.Libs.MultiPlatform.mokoTensorflow}",

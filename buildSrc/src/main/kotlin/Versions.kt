@@ -24,7 +24,7 @@ object Versions {
     object Libs {
         object Android {
             const val appCompat = "1.1.0"
-            const val tensorflowLite = "2.2.0" // "0.0.0-nightly" ???
+            const val tensorflowLite = "2.2.0"
         }
 
         object MultiPlatform {
@@ -32,7 +32,6 @@ object Versions {
             const val mokoResources = Versions.mokoResources
             const val mokoMedia = "0.4.3"
 
-            const val serialization = "0.20.0"
             const val coroutineWorker = "0.5.0"
         }
     }
