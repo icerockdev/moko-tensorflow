@@ -9,13 +9,13 @@ object Versions {
         const val minSdk = 19
     }
 
-    const val kotlin = "1.3.72"
-    const val detekt = "1.7.4"
+    const val kotlin = "1.4.31"
+    const val detekt = "1.15.0"
 
-    private const val mokoResources = "0.10.0"
+    private const val mokoResources = "0.15.1"
 
     object Plugins {
-        const val android = "3.6.2"
+        const val android = "4.1.1"
 
         const val kotlin = Versions.kotlin
         const val mokoResources = Versions.mokoResources
@@ -28,11 +28,11 @@ object Versions {
         }
 
         object MultiPlatform {
-            const val mokoTensorflow = "0.1.0"
+            const val mokoTensorflow = "0.1.1"
             const val mokoResources = Versions.mokoResources
-            const val mokoMedia = "0.4.3"
+            const val mokoMedia = "0.6.2"
 
-            const val coroutineWorker = "0.5.0"
+            const val coroutineWorker = "0.6.3"
         }
     }
 }

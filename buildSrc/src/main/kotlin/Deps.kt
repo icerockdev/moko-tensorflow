@@ -4,21 +4,23 @@
 
 object Deps {
     object Plugins {
-        val androidApplication = PluginDesc(id = "com.android.application")
-        val androidLibrary = PluginDesc(id = "com.android.library")
+        val androidApplication = GradlePlugin(id = "com.android.application")
+        val androidLibrary = GradlePlugin(id = "com.android.library")
 
-        val kotlinMultiplatform = PluginDesc(id = "org.jetbrains.kotlin.multiplatform")
-        val kotlinKapt = PluginDesc(id = "kotlin-kapt")
-        val kotlinAndroid = PluginDesc(id = "kotlin-android")
-        val kotlinAndroidExtensions = PluginDesc(id = "kotlin-android-extensions")
+        val kotlinMultiplatform = GradlePlugin(id = "org.jetbrains.kotlin.multiplatform")
+        val kotlinKapt = GradlePlugin(id = "kotlin-kapt")
+        val kotlinAndroid = GradlePlugin(id = "kotlin-android")
+        val kotlinAndroidExtensions = GradlePlugin(id = "kotlin-parcelize")
+        val mavenPublish = GradlePlugin(id = "maven-publish")
+        val signing = GradlePlugin(id = "signing")
 
-        val mobileMultiplatform = PluginDesc(id = "dev.icerock.mobile.multiplatform")
-        val mokoResources = PluginDesc(
+        val mobileMultiplatform = GradlePlugin(id = "dev.icerock.mobile.multiplatform")
+        val mokoResources = GradlePlugin(
             id = "dev.icerock.mobile.multiplatform-resources",
             module = "dev.icerock.moko:resources-generator:${Versions.Plugins.mokoResources}"
         )
 
-        val detekt = PluginDesc(id = "io.gitlab.arturbosch.detekt", version = Versions.detekt)
+        val detekt = GradlePlugin(id = "io.gitlab.arturbosch.detekt", version = Versions.detekt)
     }
 
     object Libs {

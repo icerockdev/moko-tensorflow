@@ -7,6 +7,7 @@ package dev.icerock.moko.tensorflow
 import dev.icerock.moko.resources.FileResource
 import platform.Foundation.NSData
 
+@Suppress("ForbiddenComment")
 actual class Interpreter(
     actual val fileResource: FileResource,
     actual val options: InterpreterOptions
@@ -18,7 +19,7 @@ actual class Interpreter(
         tflInterpreter = errorHandled { errPtr ->
             PlatformInterpreter(fileResource.path, options.tflInterpreterOptions, errPtr)
         }!!
-        
+
         errorHandled { errPtr ->
             tflInterpreter.allocateTensorsWithError(errPtr)
         }
@@ -84,12 +85,15 @@ actual class Interpreter(
         inputs: List<Any>,
         outputs: Map<Int, Any>
     ) {
-        if(inputs.size > getInputTensorCount()) throw IllegalArgumentException("Wrong inputs dimension.")
+        if (inputs.size > getInputTensorCount()) throw IllegalArgumentException("Wrong inputs dimension.")
 
         inputs.forEachIndexed { index, any ->
             val inputTensor = getInputTensor(index)
             errorHandled { errPtr ->
-                inputTensor.platformTensor.copyData(any as NSData, errPtr) // Fixme: hardcast Any to NSData
+                inputTensor.platformTensor.copyData(
+                    any as NSData,
+                    errPtr
+                ) // Fixme: hardcast Any to NSData
             }
         }
 
@@ -111,7 +115,8 @@ actual class Interpreter(
                 TensorDataType.INT64 -> LongArray(outputTensor.dataType.byteSize()) // Fixme:
             }
 
-            (outputs[0] as Array<Any>)[0] = array // TODO: hardcoded case, works only with digits sample
+            (outputs[0] as Array<Any>)[0] =
+                array // TODO: hardcoded case, works only with digits sample
         }
     }
 

@@ -5,9 +5,7 @@
 package dev.icerock.moko.tensorflow
 
 expect class Tensor {
-
     val dataType: TensorDataType
     val name: String
     val shape: IntArray
-
 }

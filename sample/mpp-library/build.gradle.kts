@@ -7,6 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.multiplatform")
     id("dev.icerock.mobile.multiplatform")
     id("dev.icerock.mobile.multiplatform-resources")
+    id("dev.icerock.mobile.multiplatform.ios-framework")
 }
 
 android {
@@ -18,20 +19,19 @@ android {
     }
 }
 
-setupFramework(exports = emptyList())
-
 dependencies {
     mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
 
     mppLibrary(Deps.Libs.MultiPlatform.mokoResources)
-    mppLibrary(Deps.Libs.MultiPlatform.mokoTensorflow)
     mppLibrary(Deps.Libs.MultiPlatform.mokoMedia)
+
+    commonMainApi(project(":tensorflow"))
 
     mppLibrary(Deps.Libs.MultiPlatform.coroutineWorker)
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "dev.icerock.moko.sample.tensorflowtest" //"com.icerockdev.library"
+    multiplatformResourcesPackage = "dev.icerock.moko.sample.tensorflowtest" 
 }
 
 cocoaPods {
