@@ -7,11 +7,8 @@ plugins {
     plugin(Deps.Plugins.kotlinMultiplatform)
     plugin(Deps.Plugins.kotlinAndroidExtensions)
     plugin(Deps.Plugins.mobileMultiplatform)
-    id("maven-publish")
+    plugin(Deps.Plugins.mavenPublish)
 }
-
-group = "dev.icerock.moko"
-version = Versions.Libs.MultiPlatform.mokoTensorflow
 
 android {
     compileSdkVersion(Versions.Android.compileSdk)
@@ -29,17 +26,6 @@ dependencies {
 
     androidLibrary(Deps.Libs.Android.appCompat)
     androidLibrary(Deps.Libs.Android.tensorflowLite)
-}
-
-publishing {
-    repositories.maven("https://api.bintray.com/maven/icerockdev/moko/moko-tensorflow/;publish=1") {
-        name = "bintray"
-
-        credentials {
-            username = System.getProperty("BINTRAY_USER")
-            password = System.getProperty("BINTRAY_KEY")
-        }
-    }
 }
 
 cocoaPods {

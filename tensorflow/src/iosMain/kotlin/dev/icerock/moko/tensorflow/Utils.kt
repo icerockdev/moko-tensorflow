@@ -16,6 +16,7 @@ import platform.Foundation.NSData
 import platform.Foundation.NSError
 import platform.posix.memcpy
 
+@Suppress("TooGenericExceptionThrown")
 internal fun <T> errorHandled(block: (CPointer<ObjCObjectVar<NSError?>>) -> T?): T? {
     val (result, error) = memScoped {
         val errorPtr = alloc<ObjCObjectVar<NSError?>>()
@@ -23,11 +24,12 @@ internal fun <T> errorHandled(block: (CPointer<ObjCObjectVar<NSError?>>) -> T?):
             block(errorPtr.ptr)
         }.getOrNull() to errorPtr.value
     }
-    if(error != null) throw Exception(error.description)
+    if (error != null) throw Exception(error.description)
     return result
 }
 
 internal fun UByteArray.toFloatArray(): FloatArray {
+    @Suppress("MagicNumber")
     val floatArr = FloatArray(this.size / 4)
     usePinned { src ->
         floatArr.usePinned { dst ->
@@ -43,6 +45,7 @@ internal fun NSData.toUByteArray(): UByteArray = UByteArray(this.length.toInt())
     }
 }
 
+@Suppress("MagicNumber")
 internal fun bytesToIntBits(bytes: List<Byte>): Int {
     return (bytes[0].toInt() shl 24 or
             (bytes[1].toInt() and 0xFF shl 16) or
