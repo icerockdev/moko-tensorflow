@@ -97,19 +97,9 @@ allprojects {
 
                     developers {
                         developer {
-                            id.set("Alex009")
-                            name.set("Aleksey Mikhailov")
-                            email.set("aleksey.mikhailov@icerockdev.com")
-                        }
-                        developer {
-                            id.set("prokopishin")
-                            name.set("Nikita Prokopishin")
-                            email.set("nprokopishin@icerockdev.com")
-                        }
-                        developer {
-                            id.set("Dorofeev")
-                            name.set("Andrey Dorofeev")
-                            email.set("adorofeev@icerockdev.com")
+                            id.set("Tetraquark")
+                            name.set("Vladislav Areshkin")
+                            email.set("vareshkin@icerockdev.com")
                         }
                     }
 
