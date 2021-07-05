@@ -17,12 +17,15 @@ android {
 }
 
 dependencies {
+    implementation(libs.coroutines)
     implementation(libs.kotlinStdLib)
     implementation(libs.coreKtx)
     implementation(libs.appCompat)
     implementation(libs.constraintLayout)
     implementation(libs.androidDraw)
     implementation(libs.playServices)
+    implementation(libs.mokoResources)
+    implementation(libs.lifecycleRuntime)
 
     implementation(projects.sample.mppLibrary)
 }

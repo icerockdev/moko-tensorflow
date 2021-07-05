@@ -14,16 +14,5 @@ kotlin {
     android {
         publishLibraryVariants("release", "debug")
     }
-    targets
-        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
-        .flatMap { it.binaries }
-        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
-        .forEach { framework ->
-            framework.linkerOpts(
-                project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" },
-                "-framework",
-                "TensorFlowLiteC"
-            )
-        }
 }
 

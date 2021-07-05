@@ -11,14 +11,13 @@ dependencyResolutionManagement {
         mavenCentral()
         google()
 
-        maven { url = uri("https://jitpack.io") }
-
         jcenter {
             content {
                 includeGroup("org.jetbrains.kotlinx")
                 includeGroup("org.tensorflow")
             }
         }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
