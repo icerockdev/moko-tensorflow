@@ -15,7 +15,7 @@ class ViewController: UIViewController, SketchViewDelegate {
     private var tfDigitClassifier: TFDigitClassifier?
     
     private var isInterpreterInited: Bool = false
-    private var scope: MainCoroutineScope? = nil
+    private var scope: MainCoroutineScope?
     override func viewDidLoad() {
         super.viewDidLoad()
         scope = MainCoroutineScope()
@@ -28,7 +28,7 @@ class ViewController: UIViewController, SketchViewDelegate {
         let modelFileRes: ResourcesFileResource = ResHolder().getDigitsClassifierModel()
         
         interpreter = TensorflowInterpreter(fileResource: modelFileRes, options: options)
-        tfDigitClassifier = TFDigitClassifier(interpreter: interpreter!, scope: scope)
+        tfDigitClassifier = TFDigitClassifier(interpreter: interpreter!, scope: scope!)
         
         tfDigitClassifier?.initialize()
         self.isInterpreterInited = true
