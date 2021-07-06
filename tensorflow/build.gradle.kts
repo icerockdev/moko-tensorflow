@@ -3,29 +3,18 @@
  */
 
 plugins {
-    plugin(Deps.Plugins.androidLibrary)
-    plugin(Deps.Plugins.kotlinMultiplatform)
-    plugin(Deps.Plugins.kotlinAndroidExtensions)
-    plugin(Deps.Plugins.mobileMultiplatform)
-    plugin(Deps.Plugins.mavenPublish)
-}
-
-android {
-    compileSdkVersion(Versions.Android.compileSdk)
-
-    defaultConfig {
-        minSdkVersion(Versions.Android.minSdk)
-        targetSdkVersion(Versions.Android.targetSdk)
-    }
+    id("multiplatform-library-convention")
+    id("dev.icerock.mobile.multiplatform.android-manifest")
+    id("publication-convention")
+    id("dev.icerock.mobile.multiplatform.cocoapods")
 }
 
 dependencies {
-    mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
+    commonMainImplementation(libs.kotlinStdLib)
+    commonMainImplementation(libs.mokoResources)
 
-    mppLibrary(Deps.Libs.MultiPlatform.mokoResources)
-
-    androidLibrary(Deps.Libs.Android.appCompat)
-    androidLibrary(Deps.Libs.Android.tensorflowLite)
+    androidMainImplementation(libs.appCompat)
+    androidMainImplementation(libs.tensorflowLite)
 }
 
 cocoaPods {
@@ -33,3 +22,4 @@ cocoaPods {
 
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite")
 }
+

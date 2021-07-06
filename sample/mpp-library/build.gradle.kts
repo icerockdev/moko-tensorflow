@@ -4,34 +4,30 @@
 
 plugins {
     id("com.android.library")
+    id("android-base-convention")
+    id("detekt-convention")
     id("org.jetbrains.kotlin.multiplatform")
-    id("dev.icerock.mobile.multiplatform")
-    id("dev.icerock.mobile.multiplatform-resources")
+    id("dev.icerock.mobile.multiplatform.android-manifest")
     id("dev.icerock.mobile.multiplatform.ios-framework")
+    id("dev.icerock.mobile.multiplatform.cocoapods")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
-android {
-    compileSdkVersion(Versions.Android.compileSdk)
-
-    defaultConfig {
-        minSdkVersion(Versions.Android.minSdk)
-        targetSdkVersion(Versions.Android.targetSdk)
-    }
+kotlin {
+    android()
+    ios()
 }
 
 dependencies {
-    mppLibrary(Deps.Libs.MultiPlatform.kotlinStdLib)
-
-    mppLibrary(Deps.Libs.MultiPlatform.mokoResources)
-    mppLibrary(Deps.Libs.MultiPlatform.mokoMedia)
-
-    commonMainApi(project(":tensorflow"))
-
-    mppLibrary(Deps.Libs.MultiPlatform.coroutineWorker)
+    commonMainImplementation(libs.kotlinStdLib)
+    commonMainImplementation(libs.mokoResources)
+    commonMainImplementation(libs.mokoMedia)
+    commonMainApi(projects.tensorflow)
+    commonMainImplementation(libs.coroutines)
 }
 
 multiplatformResources {
-    multiplatformResourcesPackage = "dev.icerock.moko.sample.tensorflowtest" 
+    multiplatformResourcesPackage = "dev.icerock.moko.sample.tensorflowtest"
 }
 
 cocoaPods {

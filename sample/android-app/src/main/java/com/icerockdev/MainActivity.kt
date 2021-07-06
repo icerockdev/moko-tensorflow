@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import com.divyanshu.draw.widget.DrawView
 import com.icerockdev.library.ResHolder
 import com.icerockdev.library.TFDigitClassifier
@@ -58,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         interpreter = Interpreter(ResHolder.getDigitsClassifierModel(), InterpreterOptions(2, useNNAPI = true), this)
-        digitClassifier = TFDigitClassifier(interpreter)
+        digitClassifier = TFDigitClassifier(interpreter, this.lifecycleScope)
 
         digitClassifier.initialize()
         isInterpreterInited.set(true)

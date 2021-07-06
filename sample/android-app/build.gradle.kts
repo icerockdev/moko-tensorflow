@@ -3,54 +3,29 @@
  */
 
 plugins {
-    id("com.android.application")
+    id("android-app-convention")
     id("kotlin-android")
 }
 
 android {
-    compileSdkVersion(Versions.Android.compileSdk)
-
-    dexOptions {
-        javaMaxHeapSize = "2g"
-    }
-
     defaultConfig {
-        minSdkVersion(Versions.Android.minSdk)
-        targetSdkVersion(Versions.Android.targetSdk)
-
         applicationId = "dev.icerock.moko.samples.tensorflow"
 
         versionCode = 1
         versionName = "0.1.0"
-
-        vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-        getByName("debug") {
-            isDebuggable = true
-            applicationIdSuffix = ".debug"
-        }
-    }
-
-    packagingOptions {
-        exclude("META-INF/*.kotlin_module")
     }
 }
 
 dependencies {
-    implementation(Deps.Libs.Android.kotlinStdLib.name)
+    implementation(libs.coroutines)
+    implementation(libs.kotlinStdLib)
+    implementation(libs.coreKtx)
+    implementation(libs.appCompat)
+    implementation(libs.constraintLayout)
+    implementation(libs.androidDraw)
+    implementation(libs.playServices)
+    implementation(libs.mokoResources)
+    implementation(libs.lifecycleRuntime)
 
-    implementation(Deps.Libs.Android.coreKtx.name)
-    implementation(Deps.Libs.Android.appCompat.name)
-    implementation(Deps.Libs.Android.constraintLayout.name)
-    implementation(Deps.Libs.Android.androidDraw.name)
-    implementation(Deps.Libs.Android.playServices.name)
-
-    implementation(project("${parent!!.path}:mpp-library"))
+    implementation(projects.sample.mppLibrary)
 }
