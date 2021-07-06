@@ -7,12 +7,11 @@ package com.icerockdev.library
 import dev.icerock.moko.tensorflow.Interpreter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 class TFDigitClassifier(
     private val interpreter: Interpreter,
-    private val scope: CoroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+    private val scope: CoroutineScope? = null
 ) {
 
     var inputImageWidth: Int = 0 // will be inferred from TF Lite model
@@ -30,7 +29,7 @@ class TFDigitClassifier(
     }
 
     fun classifyAsync(inputData: Any, onResult: (String) -> Unit) {
-        scope.launch(Dispatchers.Default) {
+        scope?.launch(Dispatchers.Default) {
 
             val result = Array(1) { FloatArray(OUTPUT_CLASSES_COUNT) }
             interpreter.run(listOf(inputData), mapOf(Pair(0, result)))
