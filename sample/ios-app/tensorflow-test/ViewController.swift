@@ -15,10 +15,10 @@ class ViewController: UIViewController, SketchViewDelegate {
     private var tfDigitClassifier: TFDigitClassifier?
     
     private var isInterpreterInited: Bool = false
-    private var scope: Kotlinx_coroutines_coreCoroutineScope? = nil
+    private var scope: MainCoroutineScope? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
-        scope = createCoroutineScope()
+        scope = MainCoroutineScope()
         sketchView.lineWidth = 30
         sketchView.backgroundColor = UIColor.black
         sketchView.lineColor = UIColor.white
