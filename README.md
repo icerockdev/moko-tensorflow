@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Download](https://img.shields.io/maven-central/v/dev.icerock.moko/tensorflow) ](https://repo1.maven.org/maven2/dev/icerock/moko/tensorflow) ![kotlin-version](https://img.shields.io/badge/kotlin-1.4.31-orange)
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Download](https://img.shields.io/maven-central/v/dev.icerock.moko/tensorflow) ](https://repo1.maven.org/maven2/dev/icerock/moko/tensorflow) ![kotlin-version](https://kotlin-version.aws.icerock.dev/kotlin-version?group=dev.icerock.moko&name=tensorflow)
 
 # Mobile Kotlin TensorFlow
 This is a Kotlin MultiPlatform library that provides access to [TensorFlow-Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite) functionality from
@@ -7,7 +7,6 @@ common source set.
 ## Table of Contents
 - [Features](#features)
 - [Requirements](#requirements)
-- [Versions](#versions)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Samples](#samples)
@@ -18,17 +17,9 @@ common source set.
 ## Features
 
 ## Requirements
-- Gradle version 5.6.4+
+- Gradle version 6.8+
 - Android API 19+
-- iOS version 9.0+
-
-## Versions
-### Bintray
-- kotlin 1.3.72
-  - 0.1.0
-### mavenCentral
-- kotlin 1.4.31
-  - 0.1.1
+- iOS version 11.0+
 
 ## Installation
 
@@ -44,7 +35,7 @@ allprojects {
 project build.gradle
 ```groovy
 dependencies {
-    commonMainApi("dev.icerock.moko:tensorflow:0.1.1")
+    commonMainApi("dev.icerock.moko:tensorflow:0.2.0")
 }
 
 cocoaPods {
