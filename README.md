@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Download](https://img.shields.io/maven-central/v/dev.icerock.moko/tensorflow) ](https://repo1.maven.org/maven2/dev/icerock/moko/tensorflow) ![kotlin-version](https://img.shields.io/badge/kotlin-1.4.31-orange)
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Download](https://img.shields.io/maven-central/v/dev.icerock.moko/tensorflow) ](https://repo1.maven.org/maven2/dev/icerock/moko/tensorflow) ![kotlin-version](https://kotlin-version.aws.icerock.dev/kotlin-version?group=dev.icerock.moko&name=tensorflow)
 
 # Mobile Kotlin TensorFlow
 This is a Kotlin MultiPlatform library that provides access to [TensorFlow-Lite](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/lite) functionality from
