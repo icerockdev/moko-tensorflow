@@ -35,7 +35,7 @@ allprojects {
 project build.gradle
 ```groovy
 dependencies {
-    commonMainApi("dev.icerock.moko:tensorflow:0.2.0")
+    commonMainApi("dev.icerock.moko:tensorflow:0.2.1")
 }
 
 cocoaPods {
