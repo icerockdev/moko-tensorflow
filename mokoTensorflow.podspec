@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'mokoTensorflow'
-    spec.version                  = '0.1.0'
+    spec.version                  = '0.2.1'
     spec.homepage                 = 'https://github.com/icerockdev/moko-tensorflow'
     spec.source                   = { :git => "https://github.com/icerockdev/moko-tensorflow.git", :tag => "release/#{spec.version}" }
     spec.authors                  = 'IceRock Development'

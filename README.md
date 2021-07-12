@@ -7,7 +7,6 @@ common source set.
 ## Table of Contents
 - [Features](#features)
 - [Requirements](#requirements)
-- [Versions](#versions)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Samples](#samples)
@@ -18,17 +17,9 @@ common source set.
 ## Features
 
 ## Requirements
-- Gradle version 5.6.4+
+- Gradle version 6.8+
 - Android API 19+
-- iOS version 9.0+
-
-## Versions
-### Bintray
-- kotlin 1.3.72
-  - 0.1.0
-### mavenCentral
-- kotlin 1.4.31
-  - 0.1.1
+- iOS version 11.0+
 
 ## Installation
 
@@ -44,7 +35,7 @@ allprojects {
 project build.gradle
 ```groovy
 dependencies {
-    commonMainApi("dev.icerock.moko:tensorflow:0.1.1")
+    commonMainApi("dev.icerock.moko:tensorflow:0.2.1")
 }
 
 cocoaPods {
