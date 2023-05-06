@@ -22,6 +22,8 @@ private fun DataType.toTensorDataType() = when (this) {
     DataType.INT32 -> TensorDataType.INT32
     DataType.UINT8 -> TensorDataType.UINT8
     DataType.INT64 -> TensorDataType.INT64
-    DataType.STRING -> throw IllegalArgumentException("STRING tensor data type not supported in MPP.")
-    DataType.INT8 -> throw IllegalArgumentException("INT8 tensor data type not supported in MPP.")
+    DataType.STRING -> TensorDataType.STRING
+    DataType.INT8 -> TensorDataType.INT8
+    DataType.BOOL -> TensorDataType.BOOL
+    DataType.INT16 -> TensorDataType.INT16
 }

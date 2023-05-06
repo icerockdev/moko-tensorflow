@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'mokoTensorflow'
-    spec.version                  = '0.2.1'
+    spec.version                  = '0.3.0'
     spec.homepage                 = 'https://github.com/icerockdev/moko-tensorflow'
     spec.source                   = { :git => "https://github.com/icerockdev/moko-tensorflow.git", :tag => "release/#{spec.version}" }
     spec.authors                  = 'IceRock Development'
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
     spec.source_files             = "tensorflow/src/iosMain/swift/**/*.{h,m,swift}"
     spec.resources                = "tensorflow/src/iosMain/bundle/**/*"
 
-    spec.dependency 'TensorFlowLiteObjC', '~> 2.0.0'
+    spec.dependency 'TensorFlowLiteObjC', '~> 2.11.0'
 
     spec.ios.deployment_target  = '11.0'
     spec.swift_version = '5.0'
