@@ -14,5 +14,5 @@ target 'tensorflow-test' do
   pod 'MultiPlatformLibrary', :path => '../mpp-library'
 
   pod 'Sketch'
-  pod 'TensorFlowLiteObjC', '~> 2.12.0'
+  pod 'TensorFlowLiteObjC', '~> 2.2.0'
 end
