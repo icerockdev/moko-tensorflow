@@ -16,7 +16,7 @@ buildscript {
     }
     dependencies {
         classpath(":tensorflow-build-logic")
-        classpath("dev.icerock.moko:resources-generator:0.16.1")
+        classpath(libs.mokoResourcesGenerator)
     }
 }
 
