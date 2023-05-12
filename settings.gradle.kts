@@ -21,7 +21,6 @@ dependencyResolutionManagement {
     }
 }
 
-includeBuild("tensorflow-build-logic")
 
 include(":tensorflow")
 include(":sample:android-app")

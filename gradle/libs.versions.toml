@@ -34,3 +34,4 @@ mokoMultiplatformPlugin = { module = "dev.icerock:mobile-multiplatform", version
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
 androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradleVersion" }
 detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
+mokoGradlePlugin = { module = "dev.icerock.moko:moko-gradle-plugin", version = "0.2.0" }

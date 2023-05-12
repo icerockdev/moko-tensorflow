@@ -3,11 +3,14 @@
  */
 
 plugins {
-    id("android-app-convention")
-    id("kotlin-android")
+    id("dev.icerock.moko.gradle.android.application")
+    id("dev.icerock.moko.gradle.detekt")
 }
 
 android {
+    dexOptions {
+        javaMaxHeapSize = "2g"
+    }
     defaultConfig {
         applicationId = "dev.icerock.moko.samples.tensorflow"
 

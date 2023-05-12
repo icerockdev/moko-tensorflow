@@ -3,18 +3,18 @@
  */
 
 plugins {
-    id("multiplatform-library-convention")
-    id("dev.icerock.mobile.multiplatform.android-manifest")
-    id("publication-convention")
+    id("dev.icerock.moko.gradle.multiplatform.mobile")
     id("dev.icerock.mobile.multiplatform.cocoapods")
+    id("dev.icerock.moko.gradle.publication")
+    id("dev.icerock.moko.gradle.stub.javadoc")
+    id("dev.icerock.moko.gradle.detekt")
 }
 
 dependencies {
-    commonMainImplementation(libs.kotlinStdLib)
-    commonMainImplementation(libs.mokoResources)
+    commonMainApi(libs.mokoResources)
 
     androidMainImplementation(libs.appCompat)
-    androidMainImplementation(libs.tensorflowLite)
+    androidMainApi(libs.tensorflowLite)
 }
 
 cocoaPods {
@@ -22,4 +22,6 @@ cocoaPods {
 
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite")
 }
-
+kotlin.sourceSets.all {
+    println("SOURCE_SET_NAME: ${this.name}")
+}

@@ -38,8 +38,8 @@ private fun TFLTensorDataType.toTensorDataType() = when (this) {
     TFLTensorDataType.TFLTensorDataTypeInt8 -> TensorDataType.INT8
     TFLTensorDataType.TFLTensorDataTypeFloat16 ->
         throw IllegalArgumentException("TFLTensorDataTypeFloat16 not supported.")
-    TFLTensorDataType.TFLTensorDataTypeFloat64 ->
-        throw IllegalArgumentException("TFLTensorDataTypeNoType: wrong tensor type.")
+//    TFLTensorDataType.TFLTensorDataTypeFloat64 ->
+//        throw IllegalArgumentException("TFLTensorDataTypeNoType: wrong tensor type.")
     TFLTensorDataType.TFLTensorDataTypeNoType ->
         throw IllegalArgumentException("TFLTensorDataTypeNoType: wrong tensor type.")
 }
