@@ -31,8 +31,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var interpreter: Interpreter
     private lateinit var digitClassifier: TFDigitClassifier
 
-    private var isInterpreterInited = AtomicBoolean(false)
+    private val isInterpreterInited = AtomicBoolean(false)
 
+    @Suppress("UnnecessarySafeCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
