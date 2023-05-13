@@ -14,7 +14,7 @@ dependencies {
     commonMainImplementation(libs.mokoResources)
 
     androidMainImplementation(libs.appCompat)
-    androidMainApi(libs.tensorflowLite)
+    androidMainImplementation(libs.tensorflowLite)
 }
 
 cocoaPods {

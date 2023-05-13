@@ -17,8 +17,8 @@ dependencies {
     commonMainImplementation(libs.kotlinStdLib)
     commonMainImplementation(libs.coroutines)
 
-    commonMainApi(libs.mokoResources)
-    commonMainApi(libs.mokoMedia)
+    commonMainImplementation(libs.mokoResources)
+    commonMainImplementation(libs.mokoMedia)
 
     commonMainApi(projects.tensorflow)
 }
