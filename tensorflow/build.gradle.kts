@@ -11,7 +11,7 @@ plugins {
 }
 
 dependencies {
-    commonMainApi(libs.mokoResources)
+    commonMainImplementation(libs.mokoResources)
 
     androidMainImplementation(libs.appCompat)
     androidMainApi(libs.tensorflowLite)

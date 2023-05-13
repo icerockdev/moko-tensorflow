@@ -7,12 +7,6 @@ buildscript {
         mavenCentral()
         google()
         gradlePluginPortal()
-
-        jcenter {
-            content {
-                includeGroup("org.jetbrains.trove4j")
-            }
-        }
     }
     dependencies {
         classpath(libs.kotlinGradlePlugin)
