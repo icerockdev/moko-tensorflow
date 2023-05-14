@@ -10,8 +10,6 @@ enum class TensorDataType(val value: Int) {
     INT32(2),
     UINT8(3),
     INT64(4),
-    STRING(5),
-    BOOL(6),
     INT16(7),
     INT8(9);
 
@@ -22,7 +20,5 @@ enum class TensorDataType(val value: Int) {
         INT8 -> 1
         UINT8 -> 1
         INT64 -> 8
-        BOOL -> -1
-        STRING -> -1
     }
 }

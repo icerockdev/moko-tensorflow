@@ -22,8 +22,10 @@ private fun DataType.toTensorDataType() = when (this) {
     DataType.INT32 -> TensorDataType.INT32
     DataType.UINT8 -> TensorDataType.UINT8
     DataType.INT64 -> TensorDataType.INT64
-    DataType.STRING -> TensorDataType.STRING
     DataType.INT8 -> TensorDataType.INT8
-    DataType.BOOL -> TensorDataType.BOOL
     DataType.INT16 -> TensorDataType.INT16
+    DataType.BOOL ->
+        throw IllegalArgumentException("BOOL not supported.")
+    DataType.STRING ->
+        throw IllegalArgumentException("STRING not supported.")
 }
