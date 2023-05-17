@@ -47,8 +47,8 @@ internal fun NSData.toUByteArray(): UByteArray = UByteArray(this.length.toInt())
 
 @Suppress("MagicNumber")
 internal fun bytesToIntBits(bytes: List<Byte>): Int {
-    return (bytes[0].toInt() shl 24 or
-            (bytes[1].toInt() and 0xFF shl 16) or
-            (bytes[2].toInt() and 0xFF shl 8) or
-            (bytes[3].toInt() and 0xFF))
+    return (bytes[0].toInt() shl 24)
+        .or(bytes[1].toInt() and 0xFF shl 16)
+        .or(bytes[2].toInt() and 0xFF shl 8)
+        .or(bytes[3].toInt() and 0xFF)
 }

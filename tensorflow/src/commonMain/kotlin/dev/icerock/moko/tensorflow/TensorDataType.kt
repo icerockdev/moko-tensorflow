@@ -9,11 +9,15 @@ enum class TensorDataType(val value: Int) {
     FLOAT32(1),
     INT32(2),
     UINT8(3),
-    INT64(4);
+    INT64(4),
+    INT16(7),
+    INT8(9);
 
     fun byteSize(): Int = when (this) {
         FLOAT32 -> 4
         INT32 -> 4
+        INT16 -> 2
+        INT8 -> 1
         UINT8 -> 1
         INT64 -> 8
     }

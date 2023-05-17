@@ -11,7 +11,7 @@ class ViewController: UIViewController, SketchViewDelegate {
     @IBOutlet weak var sketchView: SketchView!
     @IBOutlet weak var resultLabel: UILabel!
     
-    private var interpreter: TensorflowInterpreter?
+    private var interpreter: Interpreter?
     private var tfDigitClassifier: TFDigitClassifier?
     
     private var isInterpreterInited: Bool = false
@@ -24,10 +24,15 @@ class ViewController: UIViewController, SketchViewDelegate {
         sketchView.lineColor = UIColor.white
         sketchView.sketchViewDelegate = self
         
-        let options: TensorflowInterpreterOptions = TensorflowInterpreterOptions(numThreads: 2)
+        let options: InterpreterOptions = InterpreterOptions(
+            numThreads: 2
+        )
         let modelFileRes: ResourcesFileResource = ResHolder().getDigitsClassifierModel()
         
-        interpreter = TensorflowInterpreter(fileResource: modelFileRes, options: options)
+        interpreter = Interpreter(
+            fileResource: modelFileRes,
+            options: options
+        )
         tfDigitClassifier = TFDigitClassifier(interpreter: interpreter!, scope: scope!)
         
         tfDigitClassifier?.initialize()

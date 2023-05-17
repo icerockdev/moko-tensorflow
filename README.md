@@ -1,3 +1,4 @@
+![moko-tensorflow](https://user-images.githubusercontent.com/5010169/128705344-f858c4b9-db37-49f7-bb1f-9919f29cb78b.png)  
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Download](https://img.shields.io/maven-central/v/dev.icerock.moko/tensorflow) ](https://repo1.maven.org/maven2/dev/icerock/moko/tensorflow) ![kotlin-version](https://kotlin-version.aws.icerock.dev/kotlin-version?group=dev.icerock.moko&name=tensorflow)
 
 # Mobile Kotlin TensorFlow
@@ -35,7 +36,7 @@ allprojects {
 project build.gradle
 ```groovy
 dependencies {
-    commonMainApi("dev.icerock.moko:tensorflow:0.2.1")
+    commonMainApi("dev.icerock.moko:tensorflow:0.4.0")
 }
 
 cocoaPods {
@@ -44,24 +45,27 @@ cocoaPods {
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite", onlyLink = true)
 }
 
-kotlin {
-    targets
+kotlin.targets
         .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
         .flatMap { it.binaries }
         .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
         .forEach { framework ->
+            val isIosDevice = framework.compilation.konanTarget == KonanTarget.IOS_ARM64
+            val xcFramework = project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks/TensorFlowLiteC.xcframework/")
+            val frameworkDir = if (isIosDevice) File(xcFramework, "ios-arm64")
+            else File(xcFramework, "ios-arm64_x86_64-simulator")
+
             framework.linkerOpts(
-                project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" },
-                "-framework",
-                "TensorFlowLiteC"
+                    frameworkDir.path.let { "-F$it" },
+                    "-framework",
+                    "TensorFlowLiteC"
             )
         }
-}
 ```
 
 Podfile
 ```ruby
-pod 'TensorFlowLiteObjC', '~> 2.2.0'
+pod 'mokoTensorflow', :git => 'https://github.com/icerockdev/moko-tensorflow.git', :tag => 'release/0.4.0'
 ```
 
 ## Usage

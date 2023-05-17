@@ -6,11 +6,11 @@ package com.icerockdev
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.divyanshu.draw.widget.DrawView
 import com.icerockdev.library.ResHolder
@@ -21,6 +21,7 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.concurrent.atomic.AtomicBoolean
 
+@Suppress("MagicNumber")
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawView: DrawView
@@ -30,8 +31,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var interpreter: Interpreter
     private lateinit var digitClassifier: TFDigitClassifier
 
-    private var isInterpreterInited = AtomicBoolean(false)
+    private val isInterpreterInited = AtomicBoolean(false)
 
+    @Suppress("UnnecessarySafeCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -106,5 +108,4 @@ class MainActivity : AppCompatActivity() {
 
         return byteBuffer
     }
-
 }
