@@ -85,7 +85,7 @@ actual class Interpreter(
         inputs: List<Any>,
         outputs: Map<Int, Any>
     ) {
-        if (inputs.size > getInputTensorCount()) throw IllegalArgumentException("Wrong inputs dimension.")
+        require(inputs.size > getInputTensorCount()) { "Wrong inputs dimension." }
 
         inputs.forEachIndexed { index, any ->
             val inputTensor = getInputTensor(index)
@@ -113,8 +113,8 @@ actual class Interpreter(
                 TensorDataType.INT32 -> IntArray(outputTensor.dataType.byteSize()) // Fixme:
                 TensorDataType.UINT8 -> UIntArray(outputTensor.dataType.byteSize()) // Fixme:
                 TensorDataType.INT64 -> LongArray(outputTensor.dataType.byteSize()) // Fixme:
-                TensorDataType.INT16 -> ShortArray(outputTensor.dataType.byteSize())// TODO()
-                TensorDataType.INT8 -> ByteArray(outputTensor.dataType.byteSize())// TODO()
+                TensorDataType.INT16 -> ShortArray(outputTensor.dataType.byteSize()) // TODO()
+                TensorDataType.INT8 -> ByteArray(outputTensor.dataType.byteSize()) // TODO()
             }
 
             (outputs[0] as Array<Any>)[0] =

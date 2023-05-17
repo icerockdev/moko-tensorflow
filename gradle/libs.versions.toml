@@ -1,36 +1,34 @@
 [versions]
-kotlinVersion = "1.8.20"
+kotlinVersion = "1.8.10"
 mokoResourcesVersion = "0.22.0"
-androidVersion = "4.1.1"
-appCompatVersion = "1.6.1"
-tensorflowLiteVersion = "2.12.0"
-mokoTensorflowVersion = "0.3.0"
 mokoMediaVersion = "0.11.0"
+mokoTensorflowVersion = "0.3.0-RC1"
+
 coroutinesVersion = "1.7.0"
-constraintLayoutVersion = "2.1.4"
+
+tensorflowLiteVersion = "2.12.0"
 coreKtxVersion = "1.10.1"
 playServicesVersion = "18.0.2"
 androidDrawVersion = "v0.1"
 lifecycleRuntimeVersion = "2.6.1"
-mokoMultiplatformPluginVersion = "0.14.2"
-androidGradleVersion = "7.4.2"
-detektVersion = "1.22.0"
 
 [libraries]
-appCompat = { module = "androidx.appcompat:appcompat", version.ref = "appCompatVersion" }
+appCompat = { module = "androidx.appcompat:appcompat", version = "1.6.1" }
 kotlinStdLib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinVersion" }
-constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintLayoutVersion" }
+constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.4" }
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }
 playServices = { module = "com.google.android.gms:play-services-tasks", version.ref = "playServicesVersion" }
 androidDraw = { module = "com.github.divyanshub024:AndroidDraw", version.ref = "androidDrawVersion" }
 tensorflowLite = { module = "org.tensorflow:tensorflow-lite", version.ref = "tensorflowLiteVersion" }
 mokoTensorflow = { module = "dev.icerock.moko:tensorflow", version.ref = "mokoTensorflowVersion" }
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "mokoResourcesVersion" }
-mokoResourcesGenerator = { module = "dev.icerock.moko:resources-generator", version.ref = "mokoResourcesVersion" }
 mokoMedia = { module = "dev.icerock.moko:media", version.ref = "mokoMediaVersion" }
 coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutinesVersion" }
 lifecycleRuntime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeVersion" }
-mokoMultiplatformPlugin = { module = "dev.icerock:mobile-multiplatform", version.ref = "mokoMultiplatformPluginVersion" }
+
+mokoResourcesGenerator = { module = "dev.icerock.moko:resources-generator", version.ref = "mokoResourcesVersion" }
+mokoMultiplatformPlugin = { module = "dev.icerock:mobile-multiplatform", version = "0.14.2" }
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
-androidGradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradleVersion" }
-detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
+androidGradlePlugin = { module = "com.android.tools.build:gradle", version = "7.4.2" }
+detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version = "1.22.0" }
+mokoGradlePlugin = { module = "dev.icerock.moko:moko-gradle-plugin", version = "0.3.0" }

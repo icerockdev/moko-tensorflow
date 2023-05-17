@@ -1,29 +1,25 @@
+import org.jetbrains.kotlin.konan.target.KonanTarget
+
 /*
  * Copyright 2020 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
  */
 
 plugins {
-    id("com.android.library")
-    id("android-base-convention")
-    id("detekt-convention")
-    id("org.jetbrains.kotlin.multiplatform")
-    id("dev.icerock.mobile.multiplatform.android-manifest")
+    id("dev.icerock.moko.gradle.multiplatform.mobile")
     id("dev.icerock.mobile.multiplatform.ios-framework")
     id("dev.icerock.mobile.multiplatform.cocoapods")
     id("dev.icerock.mobile.multiplatform-resources")
-}
-
-kotlin {
-    android()
-    ios()
+    id("dev.icerock.moko.gradle.detekt")
 }
 
 dependencies {
     commonMainImplementation(libs.kotlinStdLib)
+    commonMainImplementation(libs.coroutines)
+
     commonMainImplementation(libs.mokoResources)
     commonMainImplementation(libs.mokoMedia)
+
     commonMainApi(projects.tensorflow)
-    commonMainImplementation(libs.coroutines)
 }
 
 multiplatformResources {
@@ -36,16 +32,23 @@ cocoaPods {
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite", onlyLink = true)
 }
 
-kotlin {
-    targets
-        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
-        .flatMap { it.binaries }
-        .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
-        .forEach { framework ->
-            framework.linkerOpts(
-                project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" },
-                "-framework",
-                "TensorFlowLiteC"
-            )
-        }
+framework {
+    export(projects.tensorflow)
 }
+
+kotlin.targets
+    .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
+    .flatMap { it.binaries }
+    .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
+    .forEach { framework ->
+        val isIosDevice = framework.compilation.konanTarget == KonanTarget.IOS_ARM64
+        val xcFramework = project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks/TensorFlowLiteC.xcframework/")
+        val frameworkDir = if (isIosDevice) File(xcFramework, "ios-arm64")
+        else File(xcFramework, "ios-arm64_x86_64-simulator")
+
+        framework.linkerOpts(
+            frameworkDir.path.let { "-F$it" },
+            "-framework",
+            "TensorFlowLiteC"
+        )
+    }

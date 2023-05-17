@@ -41,4 +41,6 @@ private fun TFLTensorDataType.toTensorDataType() = when (this) {
         throw IllegalArgumentException("TFLTensorDataTypeFloat16 not supported.")
     TFLTensorDataType.TFLTensorDataTypeNoType ->
         throw IllegalArgumentException("TFLTensorDataTypeNoType: wrong tensor type.")
+
+    else -> throw IllegalArgumentException("unknown TFLTensorDataType - $this")
 }

@@ -4,8 +4,8 @@
 
 package dev.icerock.moko.tensorflow
 
-import dev.icerock.moko.resources.FileResource
 import android.content.Context
+import dev.icerock.moko.resources.FileResource
 
 actual class Interpreter(
     actual val fileResource: FileResource,

@@ -45,19 +45,22 @@ cocoaPods {
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite", onlyLink = true)
 }
 
-kotlin {
-    targets
+kotlin.targets
         .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
         .flatMap { it.binaries }
         .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.Framework>()
         .forEach { framework ->
+            val isIosDevice = framework.compilation.konanTarget == KonanTarget.IOS_ARM64
+            val xcFramework = project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks/TensorFlowLiteC.xcframework/")
+            val frameworkDir = if (isIosDevice) File(xcFramework, "ios-arm64")
+            else File(xcFramework, "ios-arm64_x86_64-simulator")
+
             framework.linkerOpts(
-                project.file("../ios-app/Pods/TensorFlowLiteC/Frameworks").path.let { "-F$it" },
-                "-framework",
-                "TensorFlowLiteC"
+                    frameworkDir.path.let { "-F$it" },
+                    "-framework",
+                    "TensorFlowLiteC"
             )
         }
-}
 ```
 
 Podfile

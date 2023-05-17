@@ -7,28 +7,25 @@ buildscript {
         mavenCentral()
         google()
         gradlePluginPortal()
-
-        jcenter {
-            content {
-                includeGroup("org.jetbrains.trove4j")
-            }
-        }
     }
     dependencies {
-        classpath(":tensorflow-build-logic")
+        classpath(libs.kotlinGradlePlugin)
+        classpath(libs.androidGradlePlugin)
+        classpath(libs.mokoGradlePlugin)
+        classpath(libs.mokoMultiplatformPlugin)
         classpath(libs.mokoResourcesGenerator)
+        classpath(libs.detektGradlePlugin)
     }
 }
 
 
+apply(plugin = "dev.icerock.moko.gradle.publication.nexus")
+val mokoVersion = libs.versions.mokoTensorflowVersion.get()
 allprojects {
-    plugins.withId("org.gradle.maven-publish") {
-        group = "dev.icerock.moko"
-        version = libs.versions.mokoTensorflowVersion.get()
-    }
+    group = "dev.icerock.moko"
+    version = mokoVersion
 }
 
 tasks.register("clean", Delete::class).configure {
-    group = "build"
     delete(rootProject.buildDir)
 }
