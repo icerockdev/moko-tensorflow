@@ -36,7 +36,7 @@ allprojects {
 project build.gradle
 ```groovy
 dependencies {
-    commonMainApi("dev.icerock.moko:tensorflow:0.2.1")
+    commonMainApi("dev.icerock.moko:tensorflow:0.4.0")
 }
 
 cocoaPods {
@@ -65,7 +65,7 @@ kotlin.targets
 
 Podfile
 ```ruby
-pod 'TensorFlowLiteObjC', '~> 2.2.0'
+pod 'mokoTensorflow', :git => 'https://github.com/icerockdev/moko-tensorflow.git', :tag => 'release/0.4.0'
 ```
 
 ## Usage
