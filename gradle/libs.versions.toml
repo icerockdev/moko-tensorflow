@@ -2,7 +2,7 @@
 kotlinVersion = "1.8.10"
 mokoResourcesVersion = "0.22.0"
 mokoMediaVersion = "0.11.0"
-mokoTensorflowVersion = "0.4.0"
+mokoTensorflowVersion = "0.3.0"
 
 coroutinesVersion = "1.7.0"
 
