@@ -5,6 +5,7 @@
 package com.icerockdev.library
 
 import dev.icerock.moko.tensorflow.Interpreter
+import dev.icerock.moko.tensorflow.NativeInput
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,12 +27,24 @@ class TFDigitClassifier(
         inputImageWidth = inputShape[1]
         inputImageHeight = inputShape[2]
         modelInputSize = FLOAT_TYPE_SIZE * inputImageWidth * inputImageHeight * PIXEL_SIZE
+        interpreter.allocateTensors()
     }
 
     fun classifyAsync(inputData: Any, onResult: (String) -> Unit) {
         scope.launch(Dispatchers.Default) {
             val result = Array(1) { FloatArray(OUTPUT_CLASSES_COUNT) }
-            interpreter.run(listOf(inputData), mapOf(Pair(0, result)))
+            interpreter.run(arrayOf(inputData), mapOf(Pair(0, result)))
+
+            val maxIndex = result[0].indices.maxByOrNull { result[0][it] } ?: -1
+            val strResult = "Prediction Result: $maxIndex\nConfidence: ${result[0][maxIndex]}"
+
+            onResult(strResult)
+        }
+    }
+    fun classifyNativeAsync(nativeInput: NativeInput, onResult: (String) -> Unit) {
+        scope.launch(Dispatchers.Default) {
+            val result = Array(1) { FloatArray(OUTPUT_CLASSES_COUNT) }
+            interpreter.run(nativeInput, result)
 
             val maxIndex = result[0].indices.maxByOrNull { result[0][it] } ?: -1
             val strResult = "Prediction Result: $maxIndex\nConfidence: ${result[0][maxIndex]}"

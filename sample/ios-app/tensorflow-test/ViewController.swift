@@ -29,7 +29,7 @@ class ViewController: UIViewController, SketchViewDelegate {
         )
         let modelFileRes: ResourcesFileResource = ResHolder().getDigitsClassifierModel()
         
-        interpreter = Interpreter(
+        interpreter = ObjCInterpreter(
             fileResource: modelFileRes,
             options: options
         )

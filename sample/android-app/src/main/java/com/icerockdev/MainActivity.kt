@@ -15,8 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import com.divyanshu.draw.widget.DrawView
 import com.icerockdev.library.ResHolder
 import com.icerockdev.library.TFDigitClassifier
-import dev.icerock.moko.tensorflow.Interpreter
+import dev.icerock.moko.tensorflow.JVMInterpreter
 import dev.icerock.moko.tensorflow.InterpreterOptions
+import dev.icerock.moko.tensorflow.NativeInput
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.util.concurrent.atomic.AtomicBoolean
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var clearButton: Button
     private lateinit var predictedTextView: TextView
 
-    private lateinit var interpreter: Interpreter
+    private lateinit var interpreter: JVMInterpreter
     private lateinit var digitClassifier: TFDigitClassifier
 
     private val isInterpreterInited = AtomicBoolean(false)
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        interpreter = Interpreter(ResHolder.getDigitsClassifierModel(), InterpreterOptions(2, useNNAPI = true), this)
+        interpreter = JVMInterpreter(ResHolder.getDigitsClassifierModel(), InterpreterOptions(2, useNNAPI = true), this)
         digitClassifier = TFDigitClassifier(interpreter, this.lifecycleScope)
 
         digitClassifier.initialize()
@@ -82,8 +83,13 @@ class MainActivity : AppCompatActivity() {
             digitClassifier.inputImageHeight,
             true
         )
-
-        digitClassifier.classifyAsync(convertBitmapToByteBuffer(bitmapToClassify)) {
+        val byteBuffer = convertBitmapToByteBuffer(bitmapToClassify)
+//        digitClassifier.classifyAsync(byteBuffer) {
+//            runOnUiThread {
+//                predictedTextView.text = it
+//            }
+//        }
+        digitClassifier.classifyNativeAsync(NativeInput(byteBuffer)) {
             runOnUiThread {
                 predictedTextView.text = it
             }
