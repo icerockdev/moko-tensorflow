@@ -38,7 +38,6 @@ class JVMInterpreter(
         return tensorFlowInterpreter.getInputTensor(index).toTensor()
     }
 
-
     /**
      * Gets the Tensor associated with the provdied output index.
      *
@@ -48,7 +47,6 @@ class JVMInterpreter(
     override fun getOutputTensor(index: Int): Tensor {
         return tensorFlowInterpreter.getOutputTensor(index).toTensor()
     }
-
 
     /**
      * Resizes [index] input of the native model to the given [shape].

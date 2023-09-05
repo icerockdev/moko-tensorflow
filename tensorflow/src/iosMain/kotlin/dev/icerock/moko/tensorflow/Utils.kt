@@ -29,7 +29,6 @@ internal fun <T> errorHandled(block: (CPointer<ObjCObjectVar<NSError?>>) -> T?):
     return result
 }
 
-
 internal fun NSData.toUByteArray(): UByteArray = UByteArray(this.length.toInt()).apply {
     usePinned {
         memcpy(it.addressOf(0), this@toUByteArray.bytes, this@toUByteArray.length)

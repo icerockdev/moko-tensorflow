@@ -75,7 +75,6 @@ class ObjCInterpreter(
         }
     }
 
-
     /**
      * Runs model inference if the model takes multiple inputs, or returns multiple outputs.
      *
@@ -85,11 +84,23 @@ class ObjCInterpreter(
         inputs: Array<*>,
         outputs: Map<Int, Any>
     ) {
-        require(outputs.size == 1) { "Output map should have the { 0: Array<Any> } structure" }
-        require(outputs.containsKey(Interpreter.OUTPUT_KEY)) { "Output map should have the { 0: Array<Any> } structure" }
-        require(outputs[Interpreter.OUTPUT_KEY] is Array<*>) { "Output map 0's key value is not Array<*>. Output map should have the{ 0: Array<Any> } structure" }
-        require(inputs.size <= getInputTensorCount()) { "Wrong inputs dimension." }
-        inputs.forEach { input -> require(input is NSData) { "ios interpterer only accpept NSData as an input" } }
+        require(outputs.size == 1) {
+            "Output map should have the { 0: Array<Any> } structure"
+        }
+        require(outputs.containsKey(Interpreter.OUTPUT_KEY)) {
+            "Output map should have the { 0: Array<Any> } structure"
+        }
+        require(outputs[Interpreter.OUTPUT_KEY] is Array<*>) {
+            "Output map 0's key value is not Array<*>. Output map should have the{ 0: Array<Any> } structure"
+        }
+        require(inputs.size <= getInputTensorCount()) {
+            "Wrong inputs dimension."
+        }
+        inputs.forEach { input ->
+            require(input is NSData) {
+                "ios interpterer only accpept NSData as an input"
+            }
+        }
         val nsInputs = inputs.map { it as NSData }
         val outputArray = outputs[Interpreter.OUTPUT_KEY] as Array<Any>
         // Filling input tensors of our interpreter with nsData
@@ -132,6 +143,4 @@ class ObjCInterpreter(
      * ObjectiveC interpreter doesn't have jvm-like close method
      */
     override fun close() = Unit
-
-
 }
