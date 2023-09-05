@@ -33,18 +33,49 @@ allprojects {
 }
 ```
 
-project build.gradle
-```groovy
-dependencies {
-    commonMainApi("dev.icerock.moko:tensorflow:0.3.0")
-}
+version catalogs
+```
+[versions]
+moko-tensorflow = "<latest-version>"
 
+[libraries]
+moko-tensorflow = { module = "dev.icerock.moko:tensorflow", version.ref = "moko-tensorflow" }
+```
+
+If using default KMP plugin, type in your project.gradle.kts
+```kotlin
+kotlin {
+    cocoapods {
+        // other cocoapods configurations here
+        pod("TensorFlowLiteObjC") {
+			moduleName = "TFLTensorFlowLite"
+		}
+        // Or in non-exported module
+        pod(name="TensorFlowLiteObjC", linkOnly = true, moduleName = "TFLTensorFlowLite")
+    }
+	sourceSets {
+		val commonMain by getting {
+			dependencies {
+                api(libs.moko.tensorflow)
+            }
+        }
+    }
+}
+```
+If using default moko gradle plugin, type in your project.gradle.kts
+```kotlin
+dependencies {
+    commonMainApi(libs.moko.tensorflow)
+}
 cocoaPods {
-    podsProject = file("../ios-app/Pods/Pods.xcodeproj") // here should be path to Pods xcode project
+    // here should be path to Pods xcode project
+    podsProject = file("../ios-app/Pods/Pods.xcodeproj") 
 
     pod("TensorFlowLiteObjC", module = "TFLTensorFlowLite", onlyLink = true)
 }
-
+```
+Also add fraemwork location resolver into your project.gradle.kts
+```kotlin
 kotlin.targets
         .filterIsInstance<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget>()
         .flatMap { it.binaries }
@@ -65,7 +96,7 @@ kotlin.targets
 
 Podfile
 ```ruby
-pod 'mokoTensorflow', :git => 'https://github.com/icerockdev/moko-tensorflow.git', :tag => 'release/0.3.0'
+pod 'mokoTensorflow', :git => 'https://github.com/icerockdev/moko-tensorflow.git', :tag => 'release/<latest-version>'
 ```
 
 ## Usage
@@ -136,6 +167,11 @@ class ViewController: UIViewController {
     }
 }
 ```
+
+## Pitfalls
+1. Only Float32 is supported, but you can easily add your own type convertors
+2. When using ObjCInterpreter you are required to convert any input data into NSData.
+3. Because of IOS array allocation, only supported models with structure [N,X,Y,...,Z], where N is batch size
 
 ## Samples
 Please see more examples in the [sample directory](sample).

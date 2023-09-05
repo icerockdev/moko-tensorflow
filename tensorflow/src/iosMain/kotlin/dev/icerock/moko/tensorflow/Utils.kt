@@ -20,23 +20,13 @@ import platform.posix.memcpy
 internal fun <T> errorHandled(block: (CPointer<ObjCObjectVar<NSError?>>) -> T?): T? {
     val (result, error) = memScoped {
         val errorPtr = alloc<ObjCObjectVar<NSError?>>()
-        runCatching {
-            block(errorPtr.ptr)
-        }.getOrNull() to errorPtr.value
+        // need somehow to print trace
+        runCatching { block(errorPtr.ptr) }
+            .onFailure { it.printStackTrace() }
+            .getOrNull() to errorPtr.value
     }
     if (error != null) throw Exception(error.description)
     return result
-}
-
-internal fun UByteArray.toFloatArray(): FloatArray {
-    @Suppress("MagicNumber")
-    val floatArr = FloatArray(this.size / 4)
-    usePinned { src ->
-        floatArr.usePinned { dst ->
-            memcpy(dst.addressOf(0), src.addressOf(0), this.size.toULong())
-        }
-    }
-    return floatArr
 }
 
 internal fun NSData.toUByteArray(): UByteArray = UByteArray(this.length.toInt()).apply {

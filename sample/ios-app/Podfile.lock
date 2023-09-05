@@ -1,15 +1,15 @@
 PODS:
-  - mokoTensorflow (0.4.0):
-    - TensorFlowLiteObjC (= 0.0.1-nightly.20230212)
+  - mokoTensorflow (0.3.0):
+    - TensorFlowLiteObjC (= 2.12.0)
   - MultiPlatformLibrary (0.1.0)
   - Sketch (3.0)
-  - TensorFlowLiteC (0.0.1-nightly.20230212):
-    - TensorFlowLiteC/Core (= 0.0.1-nightly.20230212)
-  - TensorFlowLiteC/Core (0.0.1-nightly.20230212)
-  - TensorFlowLiteObjC (0.0.1-nightly.20230212):
-    - TensorFlowLiteObjC/Core (= 0.0.1-nightly.20230212)
-  - TensorFlowLiteObjC/Core (0.0.1-nightly.20230212):
-    - TensorFlowLiteC (= 0.0.1-nightly.20230212)
+  - TensorFlowLiteC (2.12.0):
+    - TensorFlowLiteC/Core (= 2.12.0)
+  - TensorFlowLiteC/Core (2.12.0)
+  - TensorFlowLiteObjC (2.12.0):
+    - TensorFlowLiteObjC/Core (= 2.12.0)
+  - TensorFlowLiteObjC/Core (2.12.0):
+    - TensorFlowLiteC (= 2.12.0)
 
 DEPENDENCIES:
   - mokoTensorflow (from `../..`)
@@ -29,11 +29,11 @@ EXTERNAL SOURCES:
     :path: "../mpp-library"
 
 SPEC CHECKSUMS:
-  mokoTensorflow: f31dd35d9c68c098aa842b2885ded86e24b91a83
+  mokoTensorflow: 3b3781b48d0b8822a9a5811f6555be26156f7b4b
   MultiPlatformLibrary: 91d3837ea2c0943e0713f98671a36913470ef412
   Sketch: 49a4b71f7bc77316ed5f75ee79dedaa2b844d5e7
-  TensorFlowLiteC: 131cd06718a81ace70d56f10b1404157ce40d7fc
-  TensorFlowLiteObjC: 2e5cf40e720254b0905e09a7f638e7a2cf935727
+  TensorFlowLiteC: 20785a69299185a379ba9852b6625f00afd7984a
+  TensorFlowLiteObjC: 9a46a29a76661c513172cfffd3bf712b11ef25c3
 
 PODFILE CHECKSUM: 5d66f0fb585809b01037efa8b5383d224d5dca98
 

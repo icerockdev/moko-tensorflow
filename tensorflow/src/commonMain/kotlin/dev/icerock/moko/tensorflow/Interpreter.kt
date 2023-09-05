@@ -6,8 +6,7 @@ package dev.icerock.moko.tensorflow
 
 import dev.icerock.moko.resources.FileResource
 
-expect class Interpreter {
-
+interface Interpreter {
     val fileResource: FileResource
     val options: InterpreterOptions
 
@@ -41,14 +40,35 @@ expect class Interpreter {
      * Resizes [index] input of the native model to the given [shape].
      */
     fun resizeInput(index: Int, shape: TensorShape)
+    fun allocateTensors()
 
     /**
      * Runs model inference if the model takes multiple inputs, or returns multiple outputs.
+     *
+     * In case with ios [outputs] required to be the { 0: Array<Any> } structure
+     *
+     * In case with ios [inputs] required to be the Array<NSData> structure
      */
-    fun run(inputs: List<Any>, outputs: Map<Int, Any>)
+    @Deprecated("This approach may work differently on ios and android platform. Use run with NativeInput")
+    fun run(inputs: Array<*>, outputs: Map<Int, Any>)
+
+    /**
+     * Runs model inference with native input data
+     *
+     * @param nativeInput - NSData or java's ByteBuffer
+     * @param output - required output array
+     */
+    fun run(nativeInput: NativeInput, output: Array<*>)
 
     /**
      * Release resources associated with the [Interpreter].
      */
     fun close()
+
+    companion object {
+        /**
+         * This is static output key which should be used when adding outputs data in [Interpreter.run]
+         */
+        const val OUTPUT_KEY = 0
+    }
 }
