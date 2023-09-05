@@ -15,8 +15,8 @@ import androidx.lifecycle.lifecycleScope
 import com.divyanshu.draw.widget.DrawView
 import com.icerockdev.library.ResHolder
 import com.icerockdev.library.TFDigitClassifier
-import dev.icerock.moko.tensorflow.JVMInterpreter
 import dev.icerock.moko.tensorflow.InterpreterOptions
+import dev.icerock.moko.tensorflow.JVMInterpreter
 import dev.icerock.moko.tensorflow.NativeInput
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
