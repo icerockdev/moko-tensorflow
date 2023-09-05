@@ -44,7 +44,12 @@ interface Interpreter {
 
     /**
      * Runs model inference if the model takes multiple inputs, or returns multiple outputs.
+     *
+     * In case with ios [outputs] required to be the { 0: Array<Any> } structure
+     *
+     * In case with ios [inputs] required to be the Array<NSData> structure
      */
+    @Deprecated("This approach may work differently on ios and android platform. Use run with NativeInput")
     fun run(inputs: Array<*>, outputs: Map<Int, Any>)
 
     /**
